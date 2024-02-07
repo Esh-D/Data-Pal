@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Home from './pages/Home/Home.tsx';
-import CalendarView from "./pages/CalendarView/CalendarView.tsx"
+import Root from './pages/Root/Root.tsx';
+import EntriesPage from "./pages/EntriesPage/EntriesPage.tsx"
 import Dashboard from "./pages/Dashboard/Dashboard.tsx"
 import Insights from "./pages/Insights/Insights.tsx"
 
@@ -16,20 +16,33 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Root />,
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />
+      },
+      //will add a banner reminder to complete daily survey if they have not done so
+      {
+        path: "daily-survey",
+        element: <div>Daily Survey Page</div>
+      },
+      {
+        path: "templates", 
+        element: <div>Edit, Create, Delete, and choose current Survey Template for Daily Survey</div>
+      },
+      //Note: might combine daily-survey with templates page, and make the daily-survey a pop-up modal
+      {
+        path: "entries",
+        element: <EntriesPage />
+      },
+      {
+        path: "insights",
+        element: <Insights />
+      },
+      //Insights is a possible Machine Learning feature
+    ]
   },
-  {
-    path: "dashboard",
-    element: <Dashboard />
-  },
-  {
-    path: "insights",
-    element: <Insights />
-  },
-  {
-    path: "calendar-view",
-    element: <CalendarView />
-  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
