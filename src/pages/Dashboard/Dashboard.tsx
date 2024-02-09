@@ -7,7 +7,6 @@ const Dashboard = () => {
   return (
     <>
       <div>Dashboard</div>
-      <Link to={`templates`}>Your Name</Link>
     </>
   )
 }
